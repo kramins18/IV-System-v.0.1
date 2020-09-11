@@ -1,4 +1,6 @@
-﻿namespace InternetVeikals.Models.Users
+﻿using System.Collections.Generic;
+
+namespace InternetVeikals.Models.Users
 {
     /// <summary>
     /// Administrators class
@@ -13,6 +15,13 @@
         /// Value of salary.
         /// </value>
         public double Salary { get; set; }
+        /// <summary>
+        /// Gets or sets the products.
+        /// </summary>
+        /// <value>
+        /// The products added by current admin
+        /// </value>
+        public ICollection<Product.Product> Products{ get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Admin"/> class.
         /// And sets role to admin
