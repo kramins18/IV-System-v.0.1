@@ -1,4 +1,6 @@
-﻿namespace InternetVeikals.Models.Users
+﻿using System.Collections.Generic;
+
+namespace InternetVeikals.Models.Users
 {
     /// <summary>
     /// Customer Class contains properties for all ecomerce customers
@@ -20,6 +22,20 @@
         /// The discount level of customer.
         /// </value>
         public int DiscountLevel  { get; set; }
+        /// <summary>
+        /// Gets or sets the orders.
+        /// </summary>
+        /// <value>
+        /// The orders.
+        /// </value>
+        public ICollection<Order.Order> Orders { get; set; }
+        /// <summary>
+        /// Gets or sets the carts.
+        /// </summary>
+        /// <value>
+        /// The carts.
+        /// </value>
+        public ICollection<Cart.Cart> Carts { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Customer"/> class. Sets customer role.
         /// </summary>

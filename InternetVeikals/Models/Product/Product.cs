@@ -1,4 +1,6 @@
 ﻿using InternetVeikals.Models.Users;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InternetVeikals.Models.Product
@@ -14,6 +16,7 @@ namespace InternetVeikals.Models.Product
         /// <value>
         /// The identifier.
         /// </value>
+        [Key]
         public long Id { get; set; }
         /// <summary>
         /// Gets or sets the name of Product.
@@ -35,7 +38,7 @@ namespace InternetVeikals.Models.Product
         /// <value>
         /// The img URL of Product.
         /// </value>
-        public string ImgUrl { get; set; }
+        public string? ImgUrl { get; set; }
         /// <summary>
         /// Gets or sets the category identifier.
         /// </summary>
@@ -80,5 +83,8 @@ namespace InternetVeikals.Models.Product
         /// The admin.
         /// </value>
         public Admin Admin { get; set; }
+        public ICollection<ProductImage> ProductImages { get; set; }
+        public ICollection<Order.OrderItem> OrderItems { get; set; }
+        public ICollection<Cart.CartProduct> CartProducts { get; set; }
     }
 }
