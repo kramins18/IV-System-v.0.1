@@ -8,22 +8,15 @@ namespace InternetVeikals.Models.Product
     /// <summary>
     /// Product class hold all common propererties of product
     /// </summary>
-    public class Product
+    public class Product : BaseEntity
     {
-        /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
-        [Key]
-        public long Id { get; set; }
         /// <summary>
         /// Gets or sets the name of Product.
         /// </summary>
         /// <value>
         /// The name of Product.
         /// </value>
+        [Required]
         public string Name { get; set; }
         /// <summary>
         /// Gets or sets the description of Product.
@@ -38,7 +31,7 @@ namespace InternetVeikals.Models.Product
         /// <value>
         /// The img URL of Product.
         /// </value>
-        public string? ImgUrl { get; set; }
+        public string ImgUrl { get; set; }
         /// <summary>
         /// Gets or sets the category identifier.
         /// </summary>
@@ -46,6 +39,7 @@ namespace InternetVeikals.Models.Product
         /// The category identifier.
         /// </value>
         [ForeignKey("Category")]
+        [Required]
         public long CategoryId { get; set; }
         /// <summary>
         /// Gets or sets the category.
@@ -60,6 +54,7 @@ namespace InternetVeikals.Models.Product
         /// <value>
         ///   <c>true</c> if this instance is published; otherwise, <c>false</c>.
         /// </value>
+        [Required]
         public bool IsPublished { get; set; }
         /// <summary>
         /// Gets or sets the price of Product.
@@ -67,6 +62,7 @@ namespace InternetVeikals.Models.Product
         /// <value>
         /// The price.
         /// </value>
+        [Required]
         public double Price { get; set; }
         /// <summary>
         /// Gets or sets the  FK admin identifier.
@@ -75,6 +71,7 @@ namespace InternetVeikals.Models.Product
         /// The admin identifier.
         /// </value>
         [ForeignKey("Admin")]
+        [Required]
         public long AdminId { get; set; }
         /// <summary>
         /// Gets or sets the admin.

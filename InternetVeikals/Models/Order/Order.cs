@@ -9,16 +9,8 @@ namespace InternetVeikals.Models.Order
     /// <summary>
     /// Model of order
     /// </summary>
-    public class Order
+    public class Order : BaseEntity
     {
-        /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
-        [Key]
-        public long Id { get; set; }
         /// <summary>
         /// Gets or sets the date of creation.
         /// </summary>
@@ -33,6 +25,7 @@ namespace InternetVeikals.Models.Order
         /// The customer identifier.
         /// </value>
         [ForeignKey("Customer")]
+        [Required]
         public long CustomerId { get; set; }
         /// <summary>
         /// Gets or sets the customer.

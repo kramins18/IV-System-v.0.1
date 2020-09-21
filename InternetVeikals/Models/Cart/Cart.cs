@@ -12,14 +12,6 @@ namespace InternetVeikals.Models.Cart
     public class Cart: BaseEntity
     {
         /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
-        [Key]
-        public long Id { get; set; }
-        /// <summary>
         /// Gets or sets the created.
         /// </summary>
         /// <value>

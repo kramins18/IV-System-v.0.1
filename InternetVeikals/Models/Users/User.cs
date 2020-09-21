@@ -7,22 +7,16 @@ namespace InternetVeikals.Models.Users
     /// This class is ment to be inharitaded from when creating Admins, customers,
     /// and all other kind of users there might be. 
     /// </summary>
-    public abstract class User
+    public abstract class User : BaseEntity
     {
-        /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>
-        /// Identifier os user class
-        /// </value>
-        [Key]
-        public long Id { get; set; }
+
         /// <summary>
         /// Gets or sets the name of user Full name.
         /// </summary>
         /// <value>
         /// Users full name
         /// </value>
+        [Required]
         public string Name { get; set; }
         /// <summary>
         /// Gets or sets the surname of user.
@@ -30,6 +24,7 @@ namespace InternetVeikals.Models.Users
         /// <value>
         /// Users surename.
         /// </value>
+        [Required]
         public string Surname { get; set; }
         /// <summary>
         /// Gets or sets the username.
@@ -37,6 +32,7 @@ namespace InternetVeikals.Models.Users
         /// <value>
         /// Users username.
         /// </value>
+        [Required]
         public string Username { get; set; }
         /// <summary>
         /// Gets or sets the personal no.
@@ -51,6 +47,7 @@ namespace InternetVeikals.Models.Users
         /// <value>
         /// The password of user.
         /// </value>
+        [Required]
         public string Password { get; set; }
         /// <summary>
         /// Gets or sets the role.

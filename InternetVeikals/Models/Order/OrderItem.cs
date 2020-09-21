@@ -6,22 +6,15 @@ namespace InternetVeikals.Models.Order
     /// <summary>
     /// Stores Information about order items
     /// </summary>
-    public class OrderItem
+    public class OrderItem : BaseEntity
     {
-        /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
-        [Key]
-        public long Id { get; set; }
         /// <summary>
         /// Gets or sets the amount.
         /// </summary>
         /// <value>
         /// The amount.
         /// </value>
+        [Required]
         public double Amount { get; set; }
         /// <summary>
         /// Gets or sets the product identifier.
@@ -30,6 +23,7 @@ namespace InternetVeikals.Models.Order
         /// The product identifier.
         /// </value>
         [ForeignKey("Product")]
+        [Required]
         public long ProductId { get; set; }
         /// <summary>
         /// Gets or sets the product.
@@ -45,6 +39,7 @@ namespace InternetVeikals.Models.Order
         /// The order identifier.
         /// </value>
         [ForeignKey("Order")]
+        [Required]
         public long OrderId { get; set; }
         /// <summary>
         /// Gets or sets the order.

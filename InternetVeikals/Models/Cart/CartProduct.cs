@@ -7,16 +7,8 @@ namespace InternetVeikals.Models.Cart
     /// <summary>
     /// Entity class for cart Products
     /// </summary>
-    public class CartProduct
+    public class CartProduct : BaseEntity
     {
-        /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
-        [Key]
-        public long Id { get; set; }
         /// <summary>
         /// Gets or sets the created.
         /// </summary>
@@ -31,6 +23,7 @@ namespace InternetVeikals.Models.Cart
         /// The product identifier.
         /// </value>
         [ForeignKey("Product")]
+        [Required]
         public long ProductId{ get; set; }
         /// <summary>
         /// Gets or sets the product.
@@ -45,7 +38,8 @@ namespace InternetVeikals.Models.Cart
         /// <value>
         /// The cart identifier.
         /// </value>
-        [ForeignKey("Cart")]       
+        [ForeignKey("Cart")]
+        [Required]
         public long CartId { get; set; }
         /// <summary>
         /// Gets or sets the cart.
