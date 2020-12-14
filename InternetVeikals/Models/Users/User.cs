@@ -7,9 +7,10 @@ namespace InternetVeikals.Models.Users
     /// This class is ment to be inharitaded from when creating Admins, customers,
     /// and all other kind of users there might be. 
     /// </summary>
-    public abstract class User : BaseEntity
+    public abstract class User
     {
-
+        [Key]
+        public long Id { get; set; }
         /// <summary>
         /// Gets or sets the name of user Full name.
         /// </summary>
@@ -55,7 +56,7 @@ namespace InternetVeikals.Models.Users
         /// <value>
         /// The role to determen rights.
         /// </value>
-        public Role role { get; set; }
+        public Role Role { get; set; }
     }
     /// <summary>
     /// Roles of all users

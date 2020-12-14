@@ -41,7 +41,7 @@ namespace InternetVeikals.Models.Users
         /// </summary>
         public Customer()
         {
-            role = Role.Customer;
+            Role = Role.Customer;
         }
     }
 }

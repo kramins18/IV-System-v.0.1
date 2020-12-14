@@ -9,8 +9,10 @@ namespace InternetVeikals.Models.Order
     /// <summary>
     /// Model of order
     /// </summary>
-    public class Order : BaseEntity
+    public class Order
     {
+        [Key]
+        public long Id { get; set; }
         /// <summary>
         /// Gets or sets the date of creation.
         /// </summary>

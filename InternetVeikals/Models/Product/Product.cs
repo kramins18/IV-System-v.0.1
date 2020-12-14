@@ -8,8 +8,10 @@ namespace InternetVeikals.Models.Product
     /// <summary>
     /// Product class hold all common propererties of product
     /// </summary>
-    public class Product : BaseEntity
+    public class Product
     {
+        [Key]
+        public long Id { get; set; }
         /// <summary>
         /// Gets or sets the name of Product.
         /// </summary>

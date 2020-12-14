@@ -6,8 +6,10 @@ namespace InternetVeikals.Models.Order
     /// <summary>
     /// Stores Information about order items
     /// </summary>
-    public class OrderItem : BaseEntity
+    public class OrderItem
     {
+        [Key]
+        public long Id { get; set; }
         /// <summary>
         /// Gets or sets the amount.
         /// </summary>

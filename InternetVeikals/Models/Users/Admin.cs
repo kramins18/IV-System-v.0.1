@@ -28,7 +28,7 @@ namespace InternetVeikals.Models.Users
         /// </summary>
         public Admin()
         {
-            role = Role.Admin;
+            Role = Role.Admin;
         }
 
     }

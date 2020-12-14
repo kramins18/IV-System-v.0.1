@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using InternetVeikals.Data;
+using InternetVeikals.Data.CategoryService;
+using InternetVeikals.Data.ProductService;
 using InternetVeikals.Profiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,12 +31,24 @@ namespace InternetVeikals
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyMethod();
+                        builder.AllowAnyOrigin();
+                        builder.AllowAnyHeader();
+                    });
+            });
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());    
             services.AddControllers();
             services.AddDbContext<Context>(opt => opt.UseSqlServer
              (Configuration.GetConnectionString("conStr")));
             services.AddScoped<CustomerService>();
             services.AddScoped<AdminService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICategoryService, CategoryService>();
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new AdminProfile());
@@ -57,6 +71,7 @@ namespace InternetVeikals
 
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthorization();
 

@@ -12,24 +12,7 @@ namespace InternetVeikals.Controllers
 {
     [Route("/api/Customer")]
     [ApiController]
-    public class CustomerController : BaseController
+    public class CustomerController
     {
-        private CustomerService CustomerService { get; set; }
-        public CustomerController(IServiceProvider service) : base(service)
-        {
-            CustomerService = service.GetService<CustomerService>();
-        }
-
-        [HttpGet]
-        public async Task<ActionResult> Get()
-        {
-            var a = await CustomerService.GetAll();
-            return Ok(a);
-        }
-
-
-
-
-
     }
 }

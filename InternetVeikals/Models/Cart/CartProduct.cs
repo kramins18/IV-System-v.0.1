@@ -7,8 +7,10 @@ namespace InternetVeikals.Models.Cart
     /// <summary>
     /// Entity class for cart Products
     /// </summary>
-    public class CartProduct : BaseEntity
+    public class CartProduct
     {
+        [Key]
+        public long Id { get; set; }
         /// <summary>
         /// Gets or sets the created.
         /// </summary>

@@ -6,8 +6,10 @@ namespace InternetVeikals.Models.Product
     /// <summary>
     /// Class contains all common categories for products
     /// </summary>
-    public class Category : BaseEntity
+    public class Category
     {
+        [Key]
+        public long Id { get; set; }
         /// <summary>
         /// Gets or sets the name of Category.
         /// </summary>

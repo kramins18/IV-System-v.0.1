@@ -6,8 +6,10 @@ namespace InternetVeikals.Models.Product
     /// <summary>
     /// Class stores product image adresses by product
     /// </summary>
-    public class ProductImage : BaseEntity
+    public class ProductImage
     {
+        [Key]
+        public long Id { get; set; }
         /// <summary>
         /// Gets or sets the img URL.
         /// </summary>

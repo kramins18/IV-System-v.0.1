@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace InternetVeikals.Data
 {
-    public class CustomerService : BaseService<Customer>
+    public class CustomerService
     {
-        public CustomerService(IServiceProvider services) : base(services)
+        public CustomerService()
         {
-            
+
         }
     }
 }
