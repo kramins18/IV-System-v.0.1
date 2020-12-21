@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InternetVeikals.Models.Product;
 using InternetVeikals.Models.Users;
 
 namespace InternetVeikals.Profiles
@@ -7,6 +8,7 @@ namespace InternetVeikals.Profiles
     {
         public AdminProfiles()
         {
+           
         }
     }
 }

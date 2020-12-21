@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InternetVeikals.Data.CategoryService;
 using InternetVeikals.Data.ProductService;
 using InternetVeikals.Models.Product;
 using Microsoft.AspNetCore.Mvc;
@@ -14,12 +15,14 @@ namespace InternetVeikals.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _repo;
+        private readonly ICategoryService _repoCategory;
         private readonly IMapper _mapper;
       
 
-        public ProductController(IProductService repo, IMapper mapper)
+        public ProductController(IProductService repo, IMapper mapper, ICategoryService repoCategory)
         {
             _repo = repo;
+            _repoCategory = repoCategory;
             _mapper = mapper;
         }
 
@@ -27,7 +30,18 @@ namespace InternetVeikals.Controllers
         public ActionResult<IEnumerable<Product>> GetAllProducts()
         {
             IEnumerable<Product> Products = _repo.GetAllProducts();
-            return Ok(_mapper.Map<IEnumerable<Product>>(Products));
+            IEnumerable<Category> categories = _repoCategory.GetAllCategories();
+
+
+            var productsList = _mapper.Map<IEnumerable<ProductReadDto>>(Products);
+            foreach (var product in productsList)
+            {
+                product.CategoryName = categories.FirstOrDefault(x => x.Id == product.CategoryId).Name;
+            }
+
+
+
+            return Ok(productsList);
         }
 
         [HttpGet("{id}", Name = "GetProductByID")]
@@ -38,24 +52,51 @@ namespace InternetVeikals.Controllers
             {
                 return NotFound();
             }
-            return Ok(_mapper.Map<Product>(product));
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public ActionResult<Category> CreateProduct(Product model)
+        {
+            _repo.CreateProduct(model);
+            _repo.SaveChanges();
+
+            var product = _mapper.Map<Product>(model);
+            return CreatedAtRoute(nameof(GetProductByID), new { ID = product.Id }, product);
+
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteProduct(int id)
+        {
+            var modelFromRepo = _repo.GetProductByID(id);
+            if (modelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _repo.DeleteProduct(modelFromRepo);
+            _repo.SaveChanges();
+            return NoContent();
         }
 
 
-        //[HttpPost]
-        //public ActionResult<ApartmentReadDTO> CreateApartment(ApartmentCreateDTO model)
-        //{
-        //    var apartmentModel = _mapper.Map<ApartmentModel>(model);
-        //    if (_houseRepo.GetHouseById(apartmentModel.ID_House) == null)
-        //    {
-        //        return BadRequest($"House With ID {model.ID_House} was not found \n Use https://localhost:44359/api/houses from list of avalibale houses! ");
-        //    }
-        //    _repo.CreateApartment(apartmentModel);
-        //    _repo.SaveChanges();
-        //    var apartmentReadDTO = _mapper.Map<ApartmentReadDTO>(apartmentModel);
-        //    return CreatedAtRoute(nameof(GetApartmentByID), new { ID = apartmentReadDTO.ID_Apartment }, apartmentReadDTO);
+        [HttpPut("{id}")]
+        public ActionResult UpdateHouse(int id, ProductUpdateDto model)
+        {
+            var modelFromRepo = _repo.GetProductByID(id);
+            if (modelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(model, modelFromRepo);
+            _repo.UpdateProduct(modelFromRepo);
+            _repo.SaveChanges();
+            return NoContent();
+        }
 
-        //}
+
+
 
     }
 }

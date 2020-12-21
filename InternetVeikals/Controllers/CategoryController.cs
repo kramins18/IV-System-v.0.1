@@ -55,7 +55,7 @@ namespace InternetVeikals.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Category> CreateHouse(Category model)
+        public ActionResult<Category> CreateCategory(Category model)
         {
             _repo.CreateCategory(model);
             _repo.SaveChanges();
@@ -66,16 +66,15 @@ namespace InternetVeikals.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult UpdateHouse(int id, Category model)
+        public ActionResult UpdateHouse(int id, CategoryUpdateDto model)
         {
             var modelFromRepo = _repo.GetCategoryByID(id);
             if (modelFromRepo == null)
             {
                 return NotFound();
             }
-
             _mapper.Map(model, modelFromRepo);
-            _repo.UpdateCategory(model);
+            _repo.UpdateCategory(modelFromRepo);
             _repo.SaveChanges();
             return NoContent();
         }

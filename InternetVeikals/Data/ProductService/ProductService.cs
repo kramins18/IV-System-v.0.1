@@ -33,6 +33,7 @@ namespace InternetVeikals.Data.ProductService
         }
 
         public IEnumerable<Product> GetAllProducts()
+       
         {
             var x = _context.Product.ToList();
             return x;

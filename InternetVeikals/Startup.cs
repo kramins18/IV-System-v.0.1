@@ -52,6 +52,8 @@ namespace InternetVeikals
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new AdminProfile());
+                mc.AddProfile(new CategoryProfile());
+                mc.AddProfile(new ProductProfile());
             });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);

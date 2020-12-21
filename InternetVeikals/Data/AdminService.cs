@@ -14,7 +14,7 @@ namespace InternetVeikals.Data
         {
             _context = context;
         }
-        public IEnumerable<Admin> GetAllResidents()
+        public IEnumerable<Admin> getAllAdmins()
         {
             return _context.Admin.ToList();
         }
