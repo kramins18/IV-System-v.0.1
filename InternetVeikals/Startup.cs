@@ -48,6 +48,8 @@ namespace InternetVeikals
             services.AddScoped<CustomerService>();
             services.AddScoped<AdminService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductImageService, ProductImageService>();
+            services.AddScoped<IFileService, FileService>();
             services.AddScoped<ICategoryService, CategoryService>();
             var mapperConfig = new MapperConfiguration(mc =>
             {
