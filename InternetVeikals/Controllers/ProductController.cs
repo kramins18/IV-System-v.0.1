@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InternetVeikals.Data;
 using InternetVeikals.Data.CategoryService;
 using InternetVeikals.Data.ProductService;
 using InternetVeikals.Models.Product;
@@ -15,15 +16,17 @@ namespace InternetVeikals.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _repo;
+        private readonly IProductImageService _imageService;
         private readonly ICategoryService _repoCategory;
         private readonly IMapper _mapper;
       
 
-        public ProductController(IProductService repo, IMapper mapper, ICategoryService repoCategory)
+        public ProductController(IProductService repo, IMapper mapper, ICategoryService repoCategory, IProductImageService imageService)
         {
             _repo = repo;
             _repoCategory = repoCategory;
             _mapper = mapper;
+            _imageService = imageService;
         }
 
         [HttpGet]
@@ -48,12 +51,20 @@ namespace InternetVeikals.Controllers
         public ActionResult<Product> GetProductByID(int id)
         {
             Product product = _repo.GetProductByID(id);
+
+
+
+
             if (product == null)
             {
                 return NotFound();
             }
 
-            return Ok(product);
+            var mappedProduct = _mapper.Map<ProductReadDto>(product);
+            var x = _imageService.GetProductImageByProductId(id).ToList();
+            mappedProduct.productImages = x;
+
+            return Ok(mappedProduct);
         }
 
         [HttpPost]
@@ -65,6 +76,19 @@ namespace InternetVeikals.Controllers
             var product = _mapper.Map<Product>(model);
             return CreatedAtRoute(nameof(GetProductByID), new { ID = product.Id }, product);
 
+        }
+
+        [HttpDelete("/image/delete/{id}")]
+        public ActionResult DeleteProductImage(int id)
+        {
+            var modelFromRepo = _imageService.GetImageById(id);
+            if (modelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _imageService.DeleteProductImage(modelFromRepo);
+            _imageService.SaveChanges();
+            return NoContent();
         }
 
         [HttpDelete("{id}")]

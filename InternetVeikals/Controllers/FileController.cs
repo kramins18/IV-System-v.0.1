@@ -3,6 +3,7 @@ using InternetVeikals.Data.ProductService;
 using InternetVeikals.Models.Product;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,13 +26,17 @@ namespace InternetVeikals.Controllers
             _productImageService = productImageService;
         }
 
-      
 
-        [HttpGet("/{fileName}")]
-        public async Task<IActionResult> Get(string fileName)
+
+        [HttpGet("get/{fileName}")]
+        public IActionResult Get(string fileName)
         {
-            var image = System.IO.File.OpenRead(@"C:\Users\ArvīdsKramiņš\Desktop\Backend\FileUploadStorage\");
-            return File(image, image.con );
+            var image = System.IO.File.OpenRead(@"C:\Users\ArvīdsKramiņš\Desktop\Backend\FileUploadStorage\" + fileName);
+            var x = new FileExtensionContentTypeProvider();
+            string contentType;
+
+            x.TryGetContentType(@"C:\Users\ArvīdsKramiņš\Desktop\Backend\FileUploadStorage\" + fileName, out contentType);
+            return File(image, contentType);
         }
 
         //[HttpGet("download/{filename}")]
@@ -75,7 +80,7 @@ namespace InternetVeikals.Controllers
                         _fileService.SaveFileToPhysicalStorage(file, fileName);
                         var productImage = new ProductImage();
                         productImage.ProductId = id;
-                        productImage.ImgUrl = fileName;
+                        productImage.ImgUrl = @"https://localhost:44315/api/file/get/" + fileName;
                         _productImageService.CreateProductImage(productImage);
                     }
                     else
