@@ -1,4 +1,5 @@
 ﻿using InternetVeikals.Models.Product;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,9 @@ namespace InternetVeikals.Data.ProductService
 
         public Product GetProductByID(int id)
         {
-            return _context.Product.FirstOrDefault(p => p.Id == id);
+            return _context.Product.Include("ProductImages").FirstOrDefault(p => p.Id == id);
+
+            //return _context.Product.FirstOrDefault(p => p.Id == id);
         }
 
         public bool SaveChanges()

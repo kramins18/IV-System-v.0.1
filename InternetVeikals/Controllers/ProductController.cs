@@ -60,11 +60,11 @@ namespace InternetVeikals.Controllers
                 return NotFound();
             }
 
-            var mappedProduct = _mapper.Map<ProductReadDto>(product);
-            var x = _imageService.GetProductImageByProductId(id).ToList();
-            mappedProduct.productImages = x;
+            //var mappedProduct = _mapper.Map<ProductReadDto>(product);
+            //var x = _imageService.GetProductImageByProductId(id).ToList();
+            //mappedProduct.productImages = x;
 
-            return Ok(mappedProduct);
+            return Ok(product);
         }
 
         [HttpPost]

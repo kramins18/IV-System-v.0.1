@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace InternetVeikals.Models.Product
 {
@@ -31,6 +32,7 @@ namespace InternetVeikals.Models.Product
         /// <value>
         /// The product.
         /// </value>
+        [JsonIgnore]
         public Product Product { get; set; }
     }
 }
