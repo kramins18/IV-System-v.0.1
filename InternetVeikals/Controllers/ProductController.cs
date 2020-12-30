@@ -78,7 +78,7 @@ namespace InternetVeikals.Controllers
 
         }
 
-        [HttpDelete("/image/delete/{id}")]
+        [HttpDelete("image/delete/{id}")]
         public ActionResult DeleteProductImage(int id)
         {
             var modelFromRepo = _imageService.GetImageById(id);
