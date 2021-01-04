@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace InternetVeikals.Models.Cart
 {
@@ -49,6 +50,7 @@ namespace InternetVeikals.Models.Cart
         /// <value>
         /// The cart.
         /// </value>
+        [JsonIgnore]
         public Cart Cart { get; set; }
         /// <summary>
         /// Gets or sets the amount.

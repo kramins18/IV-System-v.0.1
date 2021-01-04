@@ -27,7 +27,7 @@ namespace InternetVeikals.Models.Cart
         /// The customer identifier.
         /// </value>
         [ForeignKey("Customer")]
-        public long CustomerId { get; set; }
+        public long? CustomerId { get; set; }
         /// <summary>
         /// Gets or sets the customer.
         /// </summary>

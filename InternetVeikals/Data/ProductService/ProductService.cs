@@ -36,7 +36,13 @@ namespace InternetVeikals.Data.ProductService
         public IEnumerable<Product> GetAllProducts()
        
         {
-            var x = _context.Product.ToList();
+            var x = _context.Product.Include(x => x.ProductImages).ToList();
+            return x;
+        }
+
+        public IEnumerable<Product> GetAllProductsByGroupId(int id)
+        {
+            var x = _context.Product.Where(p => p.CategoryId == id).ToList();
             return x;
         }
 

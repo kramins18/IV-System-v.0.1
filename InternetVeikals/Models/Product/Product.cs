@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace InternetVeikals.Models.Product
 {
@@ -83,7 +84,9 @@ namespace InternetVeikals.Models.Product
         /// </value>
         public Admin Admin { get; set; }
         public ICollection<ProductImage> ProductImages { get; set; }
+        [JsonIgnore]
         public ICollection<Order.OrderItem> OrderItems { get; set; }
+        [JsonIgnore]
         public ICollection<Cart.CartProduct> CartProducts { get; set; }
     }
 }

@@ -31,11 +31,11 @@ namespace InternetVeikals.Controllers
         [HttpGet("get/{fileName}")]
         public IActionResult Get(string fileName)
         {
-            var image = System.IO.File.OpenRead(@"C:\Users\ArvīdsKramiņš\Desktop\Backend\FileUploadStorage\" + fileName);
+            var image = System.IO.File.OpenRead(@"C:\Users\Arvids\Desktop\ShopFileStorage\" + fileName);
             var x = new FileExtensionContentTypeProvider();
             string contentType;
 
-            x.TryGetContentType(@"C:\Users\ArvīdsKramiņš\Desktop\Backend\FileUploadStorage\" + fileName, out contentType);
+            x.TryGetContentType(@"C:\Users\Arvids\Desktop\ShopFileStorage" + fileName, out contentType);
             return File(image, contentType);
         }
 

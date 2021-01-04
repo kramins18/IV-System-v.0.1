@@ -28,7 +28,7 @@ namespace InternetVeikals.Data
 
         public void SaveFileToPhysicalStorage(IFormFile file, string fileName)
         {
-            var pathToSave = @"C:\Users\ArvīdsKramiņš\Desktop\Backend\FileUploadStorage";
+            var pathToSave = @"C:\Users\Arvids\Desktop\ShopFileStorage";
             var fullPath = Path.Combine(pathToSave, fileName);
 
             using (var stream = new FileStream(fullPath, FileMode.Create))
@@ -47,7 +47,7 @@ namespace InternetVeikals.Data
 
         public IDirectoryContents getAllPhysicalFiles()
         {
-            var pathToFiles = @"C:\Users\ArvīdsKramiņš\Desktop\Backend\FileUploadStorage";
+            var pathToFiles = @"C:\Users\Arvids\Desktop\ShopFileStorage";
             var provider = new PhysicalFileProvider(pathToFiles);
             var fileInfo = provider.GetDirectoryContents(@"\");
             return fileInfo;

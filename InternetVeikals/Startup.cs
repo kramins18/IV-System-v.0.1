@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using InternetVeikals.Data;
+using InternetVeikals.Data.CartService;
 using InternetVeikals.Data.CategoryService;
 using InternetVeikals.Data.ProductService;
+using InternetVeikals.Data.UserService;
 using InternetVeikals.Profiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -49,13 +51,16 @@ namespace InternetVeikals
             services.AddScoped<AdminService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductImageService, ProductImageService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IFileService, FileService>();
+            services.AddScoped<ICartService, CartService>();
             services.AddScoped<ICategoryService, CategoryService>();
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new AdminProfile());
                 mc.AddProfile(new CategoryProfile());
                 mc.AddProfile(new ProductProfile());
+                mc.AddProfile(new CartProfile());
             });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);

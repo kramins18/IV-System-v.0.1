@@ -2,6 +2,12 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="DTOs\Customer\**" />
+    <Content Remove="DTOs\Customer\**" />
+    <EmbeddedResource Remove="DTOs\Customer\**" />
+    <None Remove="DTOs\Customer\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
@@ -17,9 +23,5 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DTOs\Customer\" />
   </ItemGroup>
 </Project>

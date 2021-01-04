@@ -42,8 +42,6 @@ namespace InternetVeikals.Controllers
                 product.CategoryName = categories.FirstOrDefault(x => x.Id == product.CategoryId).Name;
             }
 
-
-
             return Ok(productsList);
         }
 
@@ -53,18 +51,23 @@ namespace InternetVeikals.Controllers
             Product product = _repo.GetProductByID(id);
 
 
-
-
             if (product == null)
             {
                 return NotFound();
             }
-
-            //var mappedProduct = _mapper.Map<ProductReadDto>(product);
-            //var x = _imageService.GetProductImageByProductId(id).ToList();
-            //mappedProduct.productImages = x;
-
             return Ok(product);
+        }
+
+        [HttpGet("category/{id}", Name = "GetProductByCategoryID")]
+        public ActionResult<IEnumerable<Product>> GetProductByCategoryID(int id)
+        {
+            IEnumerable<Product> products = _repo.GetAllProductsByGroupId(id);
+
+            if (products == null)
+            {
+                return NotFound();
+            }
+            return Ok(products);
         }
 
         [HttpPost]

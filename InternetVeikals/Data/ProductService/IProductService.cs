@@ -10,7 +10,7 @@ namespace InternetVeikals.Data.ProductService
     {
         bool SaveChanges();
         IEnumerable<Product> GetAllProducts();
-        //IEnumerable<ApartmentModel> GetAllApartmentsByHouseID(int id);
+        IEnumerable<Product> GetAllProductsByGroupId(int id);
         Product GetProductByID(int id);
         void CreateProduct(Product model);
         void UpdateProduct(Product model);
