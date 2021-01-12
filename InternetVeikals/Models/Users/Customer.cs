@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace InternetVeikals.Models.Users
 {
@@ -28,6 +29,7 @@ namespace InternetVeikals.Models.Users
         /// <value>
         /// The orders.
         /// </value>
+        [JsonIgnore]
         public ICollection<Order.Order> Orders { get; set; }
         /// <summary>
         /// Gets or sets the carts.

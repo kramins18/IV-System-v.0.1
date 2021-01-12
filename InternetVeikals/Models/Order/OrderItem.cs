@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace InternetVeikals.Models.Order
 {
@@ -49,8 +50,7 @@ namespace InternetVeikals.Models.Order
         /// <value>
         /// The order.
         /// </value>
+        [JsonIgnore]
         public Order Order { get; set; }
-
-
     }
 }

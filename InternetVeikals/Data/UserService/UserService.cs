@@ -10,7 +10,7 @@ namespace InternetVeikals.Data.UserService
     public class UserService : IUserService
     {
 
-        private Context _context;
+        private readonly Context _context;
 
         public UserService(Context context)
         {
@@ -47,11 +47,7 @@ namespace InternetVeikals.Data.UserService
 
         public Customer LogIn(CustomerLoginDTO creditentials)
         {
-            Customer cust = _context.Customer.FirstOrDefault(x => x.Username == creditentials.login && x.Password == creditentials.password);
-            if (cust == null)
-            {
-                throw new ArgumentNullException();
-            }
+            Customer cust = _context.Customer.FirstOrDefault(x => x.Username == creditentials.Login && x.Password == creditentials.Password);
             return cust;
         }
 

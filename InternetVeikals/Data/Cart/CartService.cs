@@ -47,7 +47,11 @@ namespace InternetVeikals.Data.CartService
 
         public CartReadDTO UpdateCart(int id, string action, int productId)
         {
-            var cart = _context.Cart.Include(x=>x.CartProducts).ThenInclude(x => x.Product).ThenInclude(x => x.ProductImages).FirstOrDefault(c => c.Id ==id);
+            var cart = _context.Cart
+                 .Include(x => x.CartProducts)
+                .ThenInclude(x => x.Product)
+                .ThenInclude(x => x.ProductImages)
+                .FirstOrDefault(c => c.Id ==id);
             var product = cart.CartProducts.FirstOrDefault(x => x.ProductId == productId);
 
 
@@ -69,11 +73,13 @@ namespace InternetVeikals.Data.CartService
             {
                 if(product == null)
                 {
-                    var prod = new CartProduct();
-                    prod.Created = DateTime.Now;
-                    prod.CartId = id;
-                    prod.ProductId = productId;
-                    prod.Amount = 1;
+                    var prod = new CartProduct
+                    {
+                        Created = DateTime.Now,
+                        CartId = id,
+                        ProductId = productId,
+                        Amount = 1
+                    };
                     cart.CartProducts.Add(prod);
                 }
                 else
@@ -82,6 +88,12 @@ namespace InternetVeikals.Data.CartService
                 }
                 SaveChanges();
             }
+
+            cart = _context.Cart
+                 .Include(x => x.CartProducts)
+                .ThenInclude(x => x.Product)
+                .ThenInclude(x => x.ProductImages)
+                .FirstOrDefault(c => c.Id == id);
 
             return _mapper.Map<CartReadDTO>(cart);
 

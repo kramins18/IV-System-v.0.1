@@ -7,7 +7,7 @@ namespace InternetVeikals.DTOs
 {
     public class CustomerLoginDTO
     {
-        public string login;
-        public string password;
+        public string Login { get; set; }
+        public string Password { get; set; }
     }
 }

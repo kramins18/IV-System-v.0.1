@@ -35,6 +35,7 @@ namespace InternetVeikals.Models.Order
         /// <value>
         /// The customer.
         /// </value>
+        
         public Customer Customer { get; set; }
         /// <summary>
         /// Gets or sets the delivery address.

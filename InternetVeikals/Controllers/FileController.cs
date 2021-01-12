@@ -78,9 +78,11 @@ namespace InternetVeikals.Controllers
                     {
                         var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                         _fileService.SaveFileToPhysicalStorage(file, fileName);
-                        var productImage = new ProductImage();
-                        productImage.ProductId = id;
-                        productImage.ImgUrl = @"https://localhost:44315/api/file/get/" + fileName;
+                        var productImage = new ProductImage
+                        {
+                            ProductId = id,
+                            ImgUrl = @"https://localhost:44315/api/file/get/" + fileName
+                        };
                         _productImageService.CreateProductImage(productImage);
                     }
                     else

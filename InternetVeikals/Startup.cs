@@ -55,6 +55,7 @@ namespace InternetVeikals
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<ICartService, CartService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IOrderService, OrderService>();
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new AdminProfile());
