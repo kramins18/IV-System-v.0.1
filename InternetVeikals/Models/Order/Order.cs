@@ -58,5 +58,6 @@ namespace InternetVeikals.Models.Order
         /// The order items.
         /// </value>
         public ICollection<OrderItem> OrderItems { get; set; }
+        public string Status { get; set; }
     }
 }

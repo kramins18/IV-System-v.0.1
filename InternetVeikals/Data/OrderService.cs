@@ -26,6 +26,7 @@ namespace InternetVeikals.Data
                 .FirstOrDefault(x => x.Id == order.CartId);
 
             var orderToCreate = CreateEmptyOrder(order);
+            orderToCreate.Status = "Jauns";
 
             foreach (var item in cart.CartProducts)
             {
@@ -49,6 +50,31 @@ namespace InternetVeikals.Data
             return orderToReturn;
 
         }
+
+        public IEnumerable<Order> GetAllOrders()
+        {
+            var orderToReturn = _context.Order
+               .Include(x => x.Customer)
+               .Include(x => x.OrderItems)
+               .ThenInclude(x => x.Product)
+               .ThenInclude(x => x.ProductImages);               
+            return orderToReturn;
+        }
+
+        public IEnumerable<Order> UpdateOrderStatus(string status, long id)
+        {
+            var orderToUpdate = _context.Order.FirstOrDefault(x => x.Id == id);
+            orderToUpdate.Status = status;
+            _context.SaveChanges();
+
+            
+            return _context.Order.Include(x => x.Customer)
+               .Include(x => x.OrderItems)
+               .ThenInclude(x => x.Product)
+               .ThenInclude(x => x.ProductImages); ;
+
+        }
+
         private Order CreateEmptyOrder(CreateOrderDTO order)
         {
             var orderToCreate = new Order

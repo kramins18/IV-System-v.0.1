@@ -25,15 +25,38 @@ namespace InternetVeikals.Controllers
 
 
         [HttpPost]
-        public ActionResult<Order> CreateOrder(int id)
+        public ActionResult<Order> CreateOrder(CreateOrderDTO a)
         {
-            var a = new CreateOrderDTO();
-            a.DeliveryAddress = "delivery address";
-            a.CustomerId = 10002;
-            a.CartId = 10004;
-            a.TotalSum = 123.32;
             var x = _repo.CreateOrder(a);
             return Ok(x);
         }
+
+        //[HttpPost("{id}/Orders", Name = "UpdateCart")]
+        //public ActionResult<Order> CreateOrder(int id)
+        //{
+        //    var a = new CreateOrderDTO();
+        //    a.DeliveryAddress = "delivery address";
+        //    a.CustomerId = 10002;
+        //    a.CartId = 10004;
+        //    a.TotalSum = 123.32;
+        //    var x = _repo.CreateOrder(a);
+        //    return Ok(x);
+        //}
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Order>> GetAllCategories()
+        {
+            IEnumerable<Order> orders = _repo.GetAllOrders();
+            return Ok(orders);
+        }
+
+        [HttpPost]
+        [Route("/api/order/status")]
+        public ActionResult<IEnumerable<Order>> UpdateStatus(UpdtOrd dto)
+        {
+            IEnumerable<Order> orders = _repo.UpdateOrderStatus(dto.Status, dto.Id);
+            return Ok(orders);
+        }
+
     }
 }

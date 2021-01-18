@@ -10,5 +10,8 @@ namespace InternetVeikals.Data
     public interface IOrderService
     {
         Order CreateOrder(CreateOrderDTO order);
+        IEnumerable<Order> GetAllOrders();
+        IEnumerable<Order> UpdateOrderStatus(string status, long id);
+
     }
 }
